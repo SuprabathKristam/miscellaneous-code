@@ -22,10 +22,18 @@ resource "aws_instance" "prometheus" {
   }
 }
 
-resource "aws_route53_record" "rometheus" {
+resource "aws_route53_record" "prometheus" {
   zone_id = "Z0989333373BZR91I0C0P"
   name    = "prometheus"
   type    = "A"
   ttl     = 300
   records = [aws_instance.prometheus.private_ip]
+}
+
+resource "aws_route53_record" "prometheus-public" {
+  zone_id = "Z0989333373BZR91I0C0P"
+  name    = "prometheus-public"
+  type    = "A"
+  ttl     = 300
+  records = [aws_instance.prometheus.public_ip]
 }
