@@ -1,0 +1,5 @@
+- name: MySQL Setup
+  hosts: all
+  become: true
+  roles:
+    - "{{ service_name }}"

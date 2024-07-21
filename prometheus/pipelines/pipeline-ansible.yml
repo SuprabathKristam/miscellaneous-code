@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  prometheus:
+  prometheus-ansible:
     group: tools
     label_template: "${COUNT}"
     materials:
@@ -17,11 +17,6 @@ pipelines:
               timeout: 0
               tasks:
                 - exec:
-                    command: terraform
-                    arguments: ["init"]
                     working_directory: prometheus
-
-                - exec:
-                    command: terraform
-                    arguments: ["apply","-auto-approve"]
-                    working_directory: prometheus
+                    command: bash
+                    arguments: [ "ansible.sh "]
